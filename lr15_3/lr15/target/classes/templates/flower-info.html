@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <title>Информация о цветочной организации</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      margin: 20px;
+      font-family: 'Arial', sans-serif;
+      background-color: #fff5e1; /* Цвет фона */
+    }
+
+    .container {
+      margin-top: 20px;
+      background-color: #f0f8ff; /* Цвет контейнера */
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    table {
+      background-color: #d3ffd3; /* Зеленый цвет для таблицы */
+    }
+
+    th {
+      background-color: #4caf50; /* Зеленый цвет для заголовков таблицы */
+      color: white;
+    }
+
+    td {
+      background-color: #f0f8ff; /* Цвет ячеек таблицы */
+    }
+
+    .btn-back {
+      margin: 10px 15px;
+      background-color: #ff6347; /* Оранжевый цвет для кнопки "Назад" */
+      color: white;
+    }
+
+    .btn-back:hover {
+      background-color: #ff4500; /* Темно-оранжевый при наведении */
+    }
+
+    .top-flowers {
+      margin-top: 20px;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .top-flower-item {
+      margin-bottom: 10px;
+    }
+
+    .top-flower-name {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+<div th:replace="navigation :: navi('Home')"></div>
+<div class="container">
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>ID</th>
+      <td th:text="${flower.id}"></td>
+    </tr>
+    <tr>
+      <th>Букет</th>
+      <td th:text="${flower.name}"></td>
+    </tr>
+    <tr>
+      <th>Цветы</th>
+      <td th:text="${flower.flower}"></td>
+    </tr>
+    <tr>
+      <th>Цена</th>
+      <td th:text="${flower.price}"></td>
+    </tr>
+    <tr>
+      <th>Тип цветов</th>
+      <td th:text="${flower.quantity}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a th:href="${referer}" class="btn btn-back">Назад</a>
+  <h4>Топ-3 по просмотрам</h4>
+  <ul th:if="${topflowers != null}">
+    <li th:each="topflower : ${topflowers}">
+      <span th:text="${topflower.name}"></span>
+      <span th:text="' - ' + ${topflower.views} + ' просмотр(ов)'"></span>
+    </li>
+  </ul>
+</div>
+</body>
+</html>
+
